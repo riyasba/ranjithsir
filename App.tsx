@@ -24,6 +24,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './home';
+import WhatsAppUI from './home';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -56,19 +58,21 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
 
   const backgroundStyle = {
+    flex:1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        barStyle='light-content'
+        backgroundColor='grey'
       />
-      <ScrollView
+      <WhatsAppUI />
+      {/* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
@@ -91,7 +95,8 @@ function App(): React.JSX.Element {
           </Section>
           <LearnMoreLinks />
         </View>
-      </ScrollView>
+      </ScrollView> */}
+      {/* <Text style={{color:'red', fontSize:32}}>Riyas</Text> */}
     </SafeAreaView>
   );
 }
