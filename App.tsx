@@ -26,6 +26,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './home';
 import WhatsAppUI from './home';
+import AppBar from './appbar';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -71,6 +72,9 @@ function App(): React.JSX.Element {
         barStyle='light-content'
         backgroundColor='grey'
       />
+
+
+      <AppBar  title="Riyu App"/>
       <WhatsAppUI />
       {/* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
