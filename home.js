@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+
 
 const ChatItem = ({ name, message, time, profilePic }) => {
     return (
@@ -15,7 +16,6 @@ const ChatItem = ({ name, message, time, profilePic }) => {
 };
 
 const WhatsAppUI = () => {
-    const navigation = useNavigation();
     const chatData = [
         {
             id: '1',
@@ -82,29 +82,31 @@ const WhatsAppUI = () => {
     ];
     const handleChatPress = () => {
         // Navigate to another page when a chat item is pressed
-        navigation.navigate('ChatDetails'); // Replace 'ChatDetails' with the name of your destination screen
+        // navigation.navigate('ChatDetails'); // Replace 'ChatDetails' with the name of your destination screen
     };
     return (
         <View style={styles.container}>
-            <FlatList
-                data={chatData}
-                renderItem={({ item }) => (
-                    <ChatItem
-                        name={item.name}
-                        message={item.message}
-                        time={item.time}
-                        profilePic={item.profilePic}
-                    />
-                )}
-                keyExtractor={(item) => item.id}
-            />
-        </View>
+        <FlatList
+          data={chatData}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={handleChatPress}>
+              <ChatItem
+                name={item.name}
+                message={item.message}
+                time={item.time}
+                profilePic={item.profilePic}
+              />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 0.8,
         backgroundColor: '#ffffff',
         padding: 10,
     },

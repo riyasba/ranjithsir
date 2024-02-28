@@ -5,9 +5,10 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from 'react';
+import type { PropsWithChildren } from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -32,7 +33,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
+function Section({ children, title }: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -60,11 +61,20 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'light';
+  const [showFist, setShowFirst] = useState(true);
 
   const backgroundStyle = {
-    flex:1,
+    flex: 1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const FirstUi = () => {
+    return (<>
+      <Text style={{ color: 'black' }} >Riyas</Text></>)
+  }
+  const SecondUi = () => {
+    return (<>
+      <Text style={{ color: 'black' }}>Ranjith</Text></>)
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -74,8 +84,13 @@ function App(): React.JSX.Element {
       />
 
 
-      <AppBar  title="Riyu App"/>
-      <WhatsAppUI />
+      <AppBar title="Riyu App" />
+      <View style={{ width: '100%', height: '100%' }}>
+        {showFist ? <WhatsAppUI /> :
+          <SecondUi />}
+        <Button title='Switch' onPress={() => setShowFirst(!showFist)} />
+      </View>
+      {/* <WhatsAppUI /> */}
       {/* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
